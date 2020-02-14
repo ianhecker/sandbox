@@ -1,18 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"sandbox/ecdsa256/keyset"
+	"sandbox/ecdsa256/write"
 )
 
 func main() {
-	baseKey := "355eb67a749754aa659a85ea66deb615bec9616a577078350c935e5a0e33faf5"
+	baseKey := "b8a55f78560a345a5c006300a146c4b2f479874450e32389d1f2761e1efb5efb"
 
 	k := keyset.MakeKeyset(baseKey)
-	b, _ := k.MarshalJSON()
-	fmt.Printf("marshal: %s\n", string(b))
-
-	// var k2 keyset.Keyset
-	// k2.UnmarshalJSON(b)
-	// fmt.Printf("unmarshal: %+v\n", k2)
+	b, err := k.MarshalJSON()
+	if err != nil {
+		panic(err)
+	}
+	err = write.WriteFile(b, baseKey+".json")
+	if err != nil {
+		panic(err)
+	}
 }
