@@ -16,7 +16,8 @@ type Keyset struct {
 }
 
 func MakeKeyset(baseKey string) (keyset Keyset) {
-	keyset.derivePrivateKey(baseKey)
+	keyset.BaseKey = baseKey
+	keyset.derivePrivateKey(keyset.BaseKey)
 	keyset.derivePublicKey(keyset.PrivateKey)
 	keyset.deriveAddress(keyset.PublicKey)
 	return keyset

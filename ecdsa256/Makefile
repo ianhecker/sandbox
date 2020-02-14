@@ -3,6 +3,8 @@ TARGET=main.go
 
 default: run
 
-run:
+run: init
 	$(RUN) $(TARGET)
 
+init:
+	@-mkdir out
