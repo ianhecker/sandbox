@@ -1,0 +1,2 @@
+bin/*
+!bin/build-all.sh
